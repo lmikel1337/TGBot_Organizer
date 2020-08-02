@@ -99,7 +99,7 @@ def add_reminder_header_step(message):
 
 def add_reminder_body_step(message):
     chat_id = message.chat.id
-    body = message.text
+    body = message.text.lower()
     reminder_instance = reminder.reminders_dict[chat_id]
     if body != 'skip':
         reminder_instance.body = body
