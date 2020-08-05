@@ -4,6 +4,7 @@ from telebot import types
 
 import reminder
 import helper
+import language_keyboard_convertions
 
 token, language = helper.init_bot()
 
@@ -20,6 +21,30 @@ def help_command(message):
 @bot.message_handler(commands=['start'])
 def start_command(message):
     bot.send_message(message.chat.id, 'start')
+
+
+@bot.message_handler(commands=['translate_scuffed_text'])
+def translate_scuffed_text_first_step(message):
+    msg = bot.send_message(message.chat.id, language_dict['translate_scuffed_text-message'])
+    bot.register_next_step_handler(msg, translate_scuffed_text)
+
+
+def translate_scuffed_text(message):
+    text = message.text
+    new_text = []
+    if text is not None:
+        for letter in text:
+                if 65 <= ord(letter) <= 90:
+                    letter = chr(ord(letter) + 32)
+                    new_text.append(chr(ord(language_keyboard_convertions.en_to_ua[letter]) - 32))
+                elif letter in language_keyboard_convertions.en_to_ua:
+                    new_text.append(language_keyboard_convertions.en_to_ua[letter])
+                else:
+                    new_text.append(letter)
+        bot.send_message(message.chat.id, "".join(new_text))
+    else:
+        msg = bot.send_message(message.chat.id, language_dict['translate_scuffed_text-message'])
+        bot.register_next_step_handler(msg, translate_scuffed_text)
 
 
 @bot.message_handler(commands=['reminder'])
@@ -39,7 +64,7 @@ def view_active_reminders(message):
     view_reminders(message, state)
 
 
-@bot.message_handler(commands=['setLanguage'])
+@bot.message_handler(commands=['set_language'])
 def change_language(message):
     global language_dict
     input = message.text.split()

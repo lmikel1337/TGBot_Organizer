@@ -16,7 +16,9 @@ language_english = {
     'view_reminders-button-done': 'Done',
     'view_reminders-button-delete': 'Delete',
 
-    'change_language-language_changed': 'Language changed'
+    'change_language-language_changed': 'Language changed',
+
+    'translate_scuffed_text-message': 'Please enter the scuffed text'
 }
 
 language_australian = {
@@ -37,5 +39,7 @@ language_australian = {
     'view_reminders-button-done': 'ǝuop',
     'view_reminders-button-delete': 'ǝʇǝlǝp',
 
-    'change_language-language_changed': 'pǝƃuɐɥɔ ǝƃɐnƃuɐ˥'
+    'change_language-language_changed': 'pǝƃuɐɥɔ ǝƃɐnƃuɐ˥',
+
+    'translate_scuffed_text-message': 'ʇxǝʇ pǝɟɟnɔs ǝɥʇ ɹǝʇuǝ ǝsɐǝlԀ'
 }
